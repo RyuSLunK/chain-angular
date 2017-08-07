@@ -2,14 +2,16 @@
 
   angular
     .module('chainAngularApp')
-    .controller('exampleController', exampleController);
+    .controller('menuController', menuController);
 
-    exampleController.$inject = [
-      '$scope'
+    menuController.$inject = [
+      '$scope',
+      'menuModel'
     ];
 
-    function exampleController(
-      $scope
+    function menuController(
+      $scope,
+      menuModel
     ) {
       /*implementation details*/
     }

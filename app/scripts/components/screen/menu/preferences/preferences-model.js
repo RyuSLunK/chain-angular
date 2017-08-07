@@ -2,7 +2,7 @@
 (function(){
   angular
   .module('chainAngularApp')
-  .factory('exampleModel',
+  .factory('preferencesModel',
       function() {
 
           var constructor = function() {

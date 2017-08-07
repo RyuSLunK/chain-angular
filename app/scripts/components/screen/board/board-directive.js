@@ -9,15 +9,15 @@
 
   angular
     .module('chainAngularApp')
-    .directive('example-directive', exampleDirective);
+    .directive('boardDirective', boardDirective);
 
-  function exampleDirective(){
+  function boardDirective(){
 
     var directive = {
-        templateUrl: 'skeletons/components/example-template.html',
+        templateUrl: 'scripts/components/screen/board/board-template.html',
         scope: {},
         controllerAs: 'controller',
-        controller: 'exampleController',
+        controller: 'boardController',
         bindToController: true
     };
 

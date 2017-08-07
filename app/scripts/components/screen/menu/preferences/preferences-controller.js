@@ -2,14 +2,16 @@
 
   angular
     .module('chainAngularApp')
-    .controller('exampleController', exampleController);
+    .controller('preferencesController', preferencesController);
 
-    exampleController.$inject = [
-      '$scope'
+    preferencesController.$inject = [
+      '$scope',
+      'preferencesModel'
     ];
 
-    function exampleController(
-      $scope
+    function preferencesController(
+      $scope,
+      preferencesModel
     ) {
       /*implementation details*/
     }

@@ -8,15 +8,15 @@
 
   angular
     .module('chainAngularApp')
-    .directive('example-directive', exampleDirective);
+    .directive('screenDirective', screenDirective);
 
-  function exampleDirective(){
-
+  function screenDirective(){
+    console.log("screenDirective");
     var directive = {
-        templateUrl: 'skeletons/components/example-template.html',
+        templateUrl: 'scripts/components/screen/screen-template.html',
         scope: {},
         controllerAs: 'controller',
-        controller: 'exampleController',
+        controller: 'screenController',
         bindToController: true
     };
 

@@ -9,15 +9,15 @@
 
   angular
     .module('chainAngularApp')
-    .directive('example-directive', exampleDirective);
+    .directive('gridDirective', gridDirective);
 
-  function exampleDirective(){
+  function gridDirective(){
 
     var directive = {
-        templateUrl: 'skeletons/components/example-template.html',
+        templateUrl: 'scripts/components/screen/board/grid/grid-template.html',
         scope: {},
         controllerAs: 'controller',
-        controller: 'exampleController',
+        controller: 'gridController',
         bindToController: true
     };
 

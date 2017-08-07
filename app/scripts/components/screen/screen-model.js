@@ -2,7 +2,7 @@
 (function(){
   angular
   .module('chainAngularApp')
-  .factory('exampleModel',
+  .factory('screenModel',
       function() {
 
           var constructor = function() {

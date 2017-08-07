@@ -1,1 +1,9 @@
-
+<h3>Grid</h3>
+<div>
+  Cells belong here
+  <div class="row" ng-repeat="row in controller.model.rowList">
+    <span class="cell" ng-repeat="cell in row">
+      <cell-directive cell-data="cell"></cell-directive>
+    </span>
+  </div>
+</div>

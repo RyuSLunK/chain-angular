@@ -81,3 +81,17 @@ body {
     border-bottom: 0;
   }
 }
+
+/* component styles */
+
+
+/* cell */
+.cell {
+  border: 1px solid black;
+  padding: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
+.cell:hover{
+  background-color: cyan;
+}

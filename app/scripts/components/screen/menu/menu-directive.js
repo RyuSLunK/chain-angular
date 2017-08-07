@@ -9,15 +9,15 @@
 
   angular
     .module('chainAngularApp')
-    .directive('example-directive', exampleDirective);
+    .directive('menuDirective', menuDirective);
 
-  function exampleDirective(){
+  function menuDirective(){
 
     var directive = {
-        templateUrl: 'skeletons/components/example-template.html',
+        templateUrl: 'scripts/components/screen/menu/menu-template.html',
         scope: {},
         controllerAs: 'controller',
-        controller: 'exampleController',
+        controller: 'menuController',
         bindToController: true
     };
 

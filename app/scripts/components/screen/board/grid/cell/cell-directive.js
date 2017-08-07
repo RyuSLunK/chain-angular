@@ -9,15 +9,17 @@
 
   angular
     .module('chainAngularApp')
-    .directive('example-directive', exampleDirective);
+    .directive('cellDirective', cellDirective);
 
-  function exampleDirective(){
+  function cellDirective(){
 
     var directive = {
-        templateUrl: 'skeletons/components/example-template.html',
-        scope: {},
+        templateUrl: 'scripts/components/screen/board/grid/cell/cell-template.html',
+        scope: {
+          cellData: '='
+        },
         controllerAs: 'controller',
-        controller: 'exampleController',
+        controller: 'cellController',
         bindToController: true
     };
 

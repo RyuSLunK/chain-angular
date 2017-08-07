@@ -9,15 +9,15 @@
 
   angular
     .module('chainAngularApp')
-    .directive('example-directive', exampleDirective);
+    .directive('preferencesDirective', preferencesDirective);
 
-  function exampleDirective(){
+  function preferencesDirective(){
 
     var directive = {
-        templateUrl: 'skeletons/components/example-template.html',
+        templateUrl: 'scripts/components/screen/menu/preferences/preferences-template.html',
         scope: {},
         controllerAs: 'controller',
-        controller: 'exampleController',
+        controller: 'preferencesController',
         bindToController: true
     };
 
