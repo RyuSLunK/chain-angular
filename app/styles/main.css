@@ -95,3 +95,31 @@ body {
 .cell:hover{
   background-color: cyan;
 }
+
+.cell cell-directive {
+    vertical-align: middle;
+    margin: 0 auto;
+    height: 50px;
+    display: inline-block;
+    width: 50px;
+}
+
+.cell cell-directive button {
+    background-color: transparent;
+    border: 0;
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+    vertical-align: middle;
+    height: 50px;
+}
+
+.cell cell-directive button.player-one {
+  background-color: green;
+}
+.cell cell-directive button.player-two {
+  background-color: red;
+}
+.drop-clicks{
+  pointer-events: none;
+}

@@ -1,3 +1,5 @@
-<button ng-click="controller.clickHandler()">
+<button ng-class="{'player-one': controller.model.owner === 1, 'player-two': controller.model.owner === 2}"
+        ng-click="controller.clickHandler()"
+        ng-disabled="controller.isProcessing()">
   {{controller.model.currentCount}}
 </button>

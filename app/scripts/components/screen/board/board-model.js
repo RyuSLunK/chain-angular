@@ -10,10 +10,16 @@
               var model;
 
               model = {
-
+                isProcessing: false,
+                currentPlayer: 1,
+                updateWithMerge: updateWithMerge
               };
 
               return model;
+
+              function updateWithMerge(data){
+                model = _.merge(model, data);
+              }
 
           };
 
