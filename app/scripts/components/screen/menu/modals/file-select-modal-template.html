@@ -1,0 +1,34 @@
+<div>
+  <h1 class="text-center">File Select</h1>
+  <hr>
+  <div class="container">
+    <div ng-repeat="file in controller.files" class="col-xs-4">
+      <button ng-class="{'btn-info': controller.selectedGameKey === file.gameKey}"
+        ng-disabled="controller.isFileButtonDisabled(file)"
+        class="btn btn-default btn-lg"
+        ng-click="controller.setGameKey(file)">Slot: <span class="badge">{{$index + 1}}</span></button>
+    </div>
+  </div>
+  <div ng-if="controller.mode === 'menuController.newGame'" class="container form-group">
+    <hr>
+    <div class="col-xs-6">
+      <label for="rowCount">Rows: </label>
+      <input id="rowCount" type="number" min="3" max="18" ng-model="controller.rowCount" />
+    </div>
+    <div class="col-xs-6">
+      <label for="columnCount">Columns: </label>
+      <input id="columnCount" type="number" min="3" max="18" ng-model="controller.columnCount" />
+    </div>
+  </div>
+  <hr>
+  <div class="btn-group btn-group-justified">
+    <div class="btn-group">
+      <button class="btn btn-default" ng-click="closeThisDialog()">Cancel</button>
+    </div>
+    <div class="btn-group">
+      <button ng-disabled="controller.isSubmitDisabled()"
+        class="btn btn-primary"
+        ng-click="controller.save()">Confirm</button>
+    </div>
+  </div>
+</div>

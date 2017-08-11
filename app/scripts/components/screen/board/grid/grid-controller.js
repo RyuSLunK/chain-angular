@@ -10,7 +10,9 @@
       '$timeout',
       '$rootScope',
       'boardService',
-      'gridService'
+      'gridService',
+      '$window',
+      '$timeout'
     ];
 
     function gridController(
@@ -19,45 +21,41 @@
       $timeout,
       $rootScope,
       boardService,
-      gridService
+      gridService,
+      $window,
+      $timeout
     ) {
       /*implementation details*/
       var controller = this;
       controller.model = gridModel.new();
-      controller.expectedIncrementCount = 0;
-      $scope.$on('cell-burst', onCellBurst);
-      $scope.$watch('controller.model.notifyIncrementList', notifyIncrement)
 
-      function onCellBurst(event, coordinates){
-        controller.model.queueBurst(coordinates);
+      $scope.$on('menuController.newGame',newGame);
+      $scope.$on('menuController.loadGame',loadGame);
+      $scope.$on('menuController.saveGame',saveGame);
+      $scope.$on('menuController.deleteGame', deleteGame);
+
+      function newGame(evt, gameOptions){
+        delete controller.model;
+        controller.model = gridModel.new(gameOptions.gameInits);
       }
 
-      function notifyIncrement(newValue, oldValue){
-        if(newValue.length > 0 && newValue !== oldValue){
-          /*queue these later*/
-          // boardService.setProcessing();
-          var broadcastList = _.cloneDeep(newValue);
-          controller.model.resetNotifyIncrementList();
-          gridService.simulateIncrements(broadcastList,controller.model.rowList);
-          for(var i = 0; i < broadcastList.length; i++){
-            $scope.$broadcast('notifyIncrement:' + broadcastList[i].rowIndex + ':' + broadcastList[i].columnIndex);
-            $scope.$on('uniqueIncrement:' + broadcastList[i].rowIndex + ':' + broadcastList[i].columnIndex, expectedIncrement);
-          }
-          controller.incrementCount += broadcastList.length;
-        }
+      function saveGame(evt,gameKey){
+        var key = gameKey || "game";
+        $window.localStorage.setItem(key,JSON.stringify(controller.model.exportGameData()));
       }
 
-      function expectedIncrement(isBursting, rowIndex, columnIndex){
-        $scope.$off('uniqueIncrement:' + rowIndex + ':' + columnIndex, expectedIncrement);
-        controller.incrementCount -= 1;
-        checkExpectedIncrements();
+      function loadGame(evt,gameInits){
+        delete controller.model;
+        var key = gameInits.gameKey || "game";
+        var gameData;
+        gameData = JSON.parse($window.localStorage[key]);
+        controller.model = gridModel.new(gameData);
       }
 
-      function checkExpectedIncrements(){
-        console.log("%c" + controller.incrementCount,"background-color:red;color:black;font-size:16px;");
-        if(controller.incrementCount > 0){
-          //still have kids who haven't finished
-        }
+      function deleteGame(gameKey){
+        var key = gameKey || "game"
+        delete $window.localStorage[gameKey];
+        $window.localStorage.removeItem(key);
       }
 
     }

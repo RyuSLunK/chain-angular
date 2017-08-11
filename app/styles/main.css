@@ -9,20 +9,25 @@ body {
   padding: 0;
 }
 
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
+
+.header, .marketing, .footer {
   padding-left: 15px;
   padding-right: 15px;
 }
 
+
 /* Custom page header */
+
 .header {
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
 }
+
+
 /* Make the masthead heading the same height as the navigation */
+
 .header h3 {
   margin-top: 0;
   margin-bottom: 0;
@@ -30,45 +35,52 @@ body {
   padding-bottom: 19px;
 }
 
+
 /* Custom page footer */
+
 .footer {
   padding-top: 19px;
   color: #777;
   border-top: 1px solid #e5e5e5;
 }
 
-.container-narrow > hr {
+.container-narrow>hr {
   margin: 30px 0;
 }
 
+
 /* Main marketing message and sign up button */
+
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
 }
+
 .jumbotron .btn {
   font-size: 21px;
   padding: 14px 24px;
 }
 
+
 /* Supporting marketing content */
+
 .marketing {
   margin: 40px 0;
 }
-.marketing p + h4 {
+
+.marketing p+h4 {
   margin-top: 28px;
 }
 
+
 /* Responsive: Portrait tablets and up */
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 730px;
   }
-
   /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
+  .header, .marketing, .footer {
     padding-left: 0;
     padding-right: 0;
   }
@@ -82,44 +94,222 @@ body {
   }
 }
 
+
 /* component styles */
 
 
 /* cell */
+
 .cell {
   border: 1px solid black;
   padding: 10px;
   display: inline-block;
   cursor: pointer;
 }
-.cell:hover{
+.cell.player-one-current {
+  border-color: green;
+}
+.cell.player-two-current {
+  border-color: red;
+}
+.cell:hover {
   background-color: cyan;
 }
 
-.cell cell-directive {
-    vertical-align: middle;
-    margin: 0 auto;
-    height: 50px;
-    display: inline-block;
-    width: 50px;
+.cell cell-component {
+  vertical-align: middle;
+  margin: 0 auto;
+  height: 50px;
+  display: inline-block;
+  width: 50px;
 }
 
-.cell cell-directive button {
-    background-color: transparent;
-    border: 0;
-    display: inline-block;
-    margin: 0 auto;
-    width: 100%;
-    vertical-align: middle;
-    height: 50px;
+.cell cell-component button {
+  background-color: transparent;
+  border: 0;
+  display: inline-block;
+  margin: 0 auto;
+  width: 100%;
+  vertical-align: middle;
+  height: 50px;
 }
 
-.cell cell-directive button.player-one {
-  background-color: green;
+.cell cell-component button.player-one {
+  /*background-color: green;*/
 }
-.cell cell-directive button.player-two {
-  background-color: red;
+
+.cell cell-component button.player-two {
+  /*background-color: red;*/
 }
-.drop-clicks{
+
+.drop-clicks {
   pointer-events: none;
+}
+
+.orb-container {
+  width: 50px;
+  height: 50px;
+  margin-left: -6px;
+  margin-top: -2px;
+    transform-origin: center;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: 2s;
+}
+.orb-group{
+  position:absolute;
+}
+.orb-group .orb{
+  border: 2px solid transparent;
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  display: inline-block;
+  vertical-align: middle;
+  position:absolute;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-duration: 2s;
+  transform-origin: center;
+}
+.single .orb, .double .orb, .triple .orb, .burst-cell{
+  box-shadow: 1px 0px 3px 2px black inset;
+}
+.player-one .orb, .player-one .burst-cell{
+  background-color: green;
+  border-color: darkgreen;
+}
+.player-two .orb, .player-two .burst-cell{
+  background-color: red;
+  border-color: darkred;
+}
+.orb-group.single .orb{
+  top: 10px;
+  left: 10px;
+}
+.orb-group.single.critical .orb{
+  animation-name: single;
+}
+.orb-group.double .orb:nth-child(1){
+  top: 5px;
+}
+.orb-group.double .orb:nth-child(2){
+  left: 21px;
+  top: 10px;
+}
+.orb-container.critical{
+  animation-name: spin;
+}
+.orb-group.double.critical .orb{
+  animation-name: double;
+}
+.orb-group.triple .orb:nth-child(1){
+  left: 10px;
+      z-index: 1;
+}
+.orb-group.triple .orb:nth-child(2){
+    top: 15px;
+}
+.orb-group.triple .orb:nth-child(3){
+  top: 15px;
+    left: 19px;
+}
+.orb-group.triple.critical .orb{
+  animation-name:triple;
+}
+.burst-group {
+    pointer-events: none;
+    border: 2px solid transparent;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+.burst-cell {
+    pointer-events: none;
+    width: 25px;
+    border: 2px solid transparent;
+    border-radius: 100%;
+    position: absolute;
+    height: 25px;
+    display: inline-block;
+    top: 10px;
+    left: 10px;
+    animation-iteration-count: 1;
+    animation-direction: reverse;
+    opacity: 0;
+    background-color: red;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-in-out;
+}
+
+.burst-cell.burst{
+  animation-name: burst;
+}
+
+.burst-cell.up{
+  transform: translateY(-72px);
+}
+.burst-cell.down{
+  transform: translateY(72px);
+}
+.burst-cell.right{
+  transform: translateX(72px);
+}
+.burst-cell.left{
+  transform: translateX(-72px);
+}
+@keyframes single {
+  0%{
+    transform: rotate(0deg) translateY(0px);
+  }
+  50%{
+    transform: rotate(180deg) translateY(0px) scale(1.1,1.1);
+    border-width: 3px;
+}
+  100%{
+    transform: rotate(360deg) translateY(0px);
+  }
+}
+@keyframes double {
+  0%{
+    transform: rotate(0deg) translateY(0px);
+  }
+  50%{
+    transform: rotate(180deg) translateY(0px) scale(1.1,1.1);
+    border-width: 3px;
+}
+  100%{
+    transform: rotate(360deg) translateY(0px);
+  }
+}
+@keyframes triple {
+  0%{
+    transform: rotate(0deg) translateY(0px);
+  }
+  50%{
+    transform: rotate(180deg) translateY(0px) scale(1.1,1.1);
+    border-width: 3px;
+}
+  100%{
+    transform: rotate(360deg) translateY(0px);
+  }
+}
+@keyframes spin {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform:rotate(360deg);
+  }
+}
+@keyframes burst {
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+    transform: translateX(0px) translateY(0px);
+  }
+
 }

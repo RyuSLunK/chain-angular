@@ -1,9 +1,15 @@
-<h3>Grid</h3>
+<h3>Player {{controller.model.currentPlayer}}</h3>
+<h4>P1: {{controller.model.playerTotals[0]}} | {{controller.model.playerTotals[1]}} :2P</h4>
 <div>
-  Cells belong here
   <div class="row" ng-repeat="row in controller.model.rowList">
-    <span class="cell" ng-repeat="cell in row">
-      <cell-directive cell-data="cell"></cell-directive>
+    <span ng-class="{'player-one-current':controller.model.currentPlayer === 1, 'player-two-current': controller.model.currentPlayer === 2}" class="cell" ng-repeat="cell in row">
+      <div class="burst-group" ng-class="{'player-one':cell.owner === 1, 'player-two': cell.owner === 2}">
+        <div ng-if="cell.targets.up" class="burst-cell up"></div>
+        <div ng-if="cell.targets.down" class="burst-cell down"></div>
+        <div ng-if="cell.targets.left" class="burst-cell left"></div>
+        <div ng-if="cell.targets.right" class="burst-cell right"></div>
+      </div>
+      <cell-component id="cell-{{cell.rowIndex}}-{{cell.columnIndex}}" on-cell-click="controller.model.cellClick(cell)" cell-data="cell"></cell-component>
     </span>
   </div>
 </div>

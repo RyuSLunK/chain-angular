@@ -1,5 +1,16 @@
-<button ng-class="{'player-one': controller.model.owner === 1, 'player-two': controller.model.owner === 2}"
-        ng-click="controller.clickHandler()"
+<button ng-class="{'player-one': controller.cellData.owner === 1, 'player-two': controller.cellData.owner === 2}"
+        ng-click="controller.onCellClick()"
         ng-disabled="controller.isProcessing()">
-  {{controller.model.currentCount}}
+        <div ng-class="{'critical': controller.cellData.critical}" class="orb-container">
+          <div ng-class="{
+            'critical': controller.cellData.critical,
+            'single': controller.cellData.currentCount === 1,
+            'double': controller.cellData.currentCount === 2,
+            'triple': controller.cellData.currentCount === 3
+            }" class="orb-group">
+            <div ng-hide="controller.cellData.currentCount < 1" class="orb"></div>
+            <div ng-hide="controller.cellData.currentCount < 2" class="orb"></div>
+            <div ng-hide="controller.cellData.currentCount < 3" class="orb"></div>
+          </div>
+        </div>
 </button>

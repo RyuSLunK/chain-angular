@@ -343,7 +343,7 @@ module.exports = function (grunt) {
           usemin: 'scripts/scripts.js'
         },
         cwd: '<%= yeoman.app %>',
-        src: ['views/{,*/}*.html','scripts/components/{,*/}*.html'],
+        src: ['views/{,*/}*.html','scripts/components/**/*.html'],
         dest: '.tmp/templateCache.js'
       }
     },
@@ -416,6 +416,13 @@ module.exports = function (grunt) {
         'svgmin'
       ]
     },
+    eslint: {
+       options: {
+           configFile: 'eslint.json',
+          //  rulePaths: ['conf/rules']
+       },
+       target: ['<%= yeoman.app %>/scripts/**/*.js']
+   },
 
     // Test settings
     karma: {
@@ -464,6 +471,7 @@ module.exports = function (grunt) {
     'postcss',
     'ngtemplates',
     'concat',
+    'eslint',
     'ngAnnotate',
     'copy:dist',
     'cdnify',
@@ -479,5 +487,13 @@ module.exports = function (grunt) {
     'newer:jscs',
     'test',
     'build'
+  ]);
+
+  grunt.registerTask('ngtemp',[
+    'ngtemplates:crap'
+  ]);
+
+  grunt.registerTask('lint',[
+    'eslint'
   ]);
 };

@@ -15,7 +15,8 @@
   function gridService(cellService){
 
     var service = {
-        createGrid: createGrid
+        createGrid: createGrid,
+        simulateIncrements: simulateIncrements
     };
 
     function createGrid(columnCount, rowCount){
@@ -28,6 +29,10 @@
         rowList.push(newRow);
       }
       return rowList;
+    }
+
+    function simulateIncrements(broadcastList, rowList){
+      
     }
 
 

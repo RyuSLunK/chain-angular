@@ -24,6 +24,17 @@
       controller.isProcessing = isProcessing;
       $scope.$watch('controller.cellData', updateCellData);
       $scope.$watch('controller.model.bursting', notifyBursting);
+      $scope.$watch('controller.cellData.currentCount',checkBurst);
+
+      function checkBurst(n,o){
+        if(n == 0 && o != 0){
+          animateBurst();
+        }
+      }
+
+      function animateBurst(){
+        $("#cell-" + controller.cellData.rowIndex + "-" + controller.cellData.columnIndex).fadeOut(1000).fadeIn(1000);
+      }
 
       function updateCellData(newValue, oldValue){
         if(newValue){
@@ -33,7 +44,6 @@
               controller.isNotificationListenerSet = true;
             }
             controller.model.updateWithMerge(newValue);
-            console.log("%cUpdating Cell Data","background-color:black;color:white;");
           });
         }
 
@@ -44,7 +54,8 @@
           // boardService.setProcessing();
           var message = {
             columnIndex: controller.model.columnIndex,
-            rowIndex: controller.model.rowIndex
+            rowIndex: controller.model.rowIndex,
+
           };
           $scope.$emit("cell-burst", message);
           controller.model.resetCount();
@@ -57,10 +68,8 @@
           return;
         }
         if(!controller.model.critical){
-          console.log("togglingPlayer within click handler");
           boardService.toggleCurrentPlayer();
         } else {
-          console.log("deferring player toggle for after chain reaction!");
         }
         controller.model.incrementCount();
       }

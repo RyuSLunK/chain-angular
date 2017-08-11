@@ -16,7 +16,6 @@
   ];
 
   function boardService($timeout, $q){
-    console.log("boardService Initialized!!!");
     var service = {
         getCurrentPlayer: getCurrentPlayer,
         toggleCurrentPlayer: toggleCurrentPlayer,
